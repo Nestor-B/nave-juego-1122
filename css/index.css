@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: 111ms;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+
+#app {
+    width: 100%;
+    max-width: 1480px;
+    margin: auto;
+    height: 100vh;
+    background-image: url(../img/background.jpg);
+    background-size: 400px 400px;
+    animation: moveBack 11s infinite linear;
+}
+
+.nave {
+    position: absolute !important;
+    top: 85%;
+    left: calc(50% - 25px);
+    background: url(../img/nave.png);
+    background-size: cover;
+    background-position: center center;
+}
+
+.enemy {
+    position: absolute !important;
+    top: 5%;
+    left: calc(50% - 25px);
+    background: url(../img/enemy1.png);
+    background-size: cover;
+    background-position: center center;
+    animation: moveEnemy 1s linear;
+}
+/* ._typenave_0 {background: url(../img/enemy1.png);} */
+/* ._typenave_1 {background: url(../img/enemy4.png);} */
+
+@keyframes moveEnemy {
+    from { transform: translateY(-200px); }
+}
+
+.nave::after {
+    content: '';
+    position: absolute;
+    bottom: -13px;
+    left: 43.3%;
+    z-index: 6;
+    padding: 9px 3px;
+    background: linear-gradient(red, transparent);
+    animation: tornina 155ms infinite;
+}
+
+[class*='_fire_'], ._fire_enemy_ {
+    width: 10px;
+    height: 10px;
+    background: gold;
+    border-radius: 50%;
+    box-shadow: 0 0 30px 10px gold;
+    position: absolute;
+    left: 7px;
+    z-index: 5;
+}
+
+._fire_1 {
+    z-index: 6;
+}
+
+.circle-fire::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 70%;
+    height: 70%;
+    background: transparent;
+    border: 1px double yellowgreen;
+    z-index: 5;
+    border-radius: 50%;
+    transform: scale(1.9);
+    animation: efectBomb 444ms infinite linear;
+}
+
+.Modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.explosion {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-image: url("../img/explosion.png");
+    /* background-position: center center; */
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    animation: smile 777ms steps(12, end) infinite;
+}
+
+@keyframes smile {
+    from {
+        background-position: 0px;
+    }
+
+    to {
+        background-position: -600px;
+    }
+}
+
+button {
+    padding: 1em 2em;
+    background: rgb(241, 152, 37);
+    border: 1px solid blanchedalmond;
+    cursor: pointer;
+}
+
+.Modal .container-modal {
+    /* border: 5px dotted burlywood; */
+    outline: 10px double burlywood;
+    min-width: 333px;
+    width: 450px;
+    min-height: 222px;
+    background: whitesmoke;
+}
+
+@keyframes efectBomb {
+    50% {
+        transform: scale(.50);
+    }
+}
+
+@keyframes tornina {
+    50% {
+        background: transparent;
+    }
+}
+
+@keyframes moveBack {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 400px;
+    }
+}
