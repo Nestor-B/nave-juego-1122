@@ -68,14 +68,19 @@ class EnemyNave extends classAbstract {
             this.nave.style.height = this.h + 'px'
             // this.nave.classList.add('_typenave_'+ parseInt(this.random(1, 2)) ) 
             this.nave.classList.add('enemy')
+            this.nave.classList.add('v-enemy')
             this.nave.classList.add('solid')
             this.nave.setAttribute('d', this.random(700, 10000))
+            this.nave.setAttribute('m', [ this.nave.offsetLeft - 100, this.nave.offsetLeft - 50, this.nave.offsetLeft,  this.nave.offsetLeft + 50, this.nave.offsetLeft + 100 ] )
 
             const myevento = new Event('disparo')
             this.nave.addEventListener('disparo', (event)=>{
                 let delay = parseInt(event.target.getAttribute('d'))
                 setInterval((e) => {
                     if(e && e.offsetLeft != 0){
+                        let arrPosX = e.getAttribute('m').split(',')
+                        let num = parseInt(Math.random() * 2)
+                        e.style.left = arrPosX[num] + 'px'
                         let fire = d.createElement('div')
                         fire.classList.add('_fire_enemy_')
                         fire.style.top = e.offsetTop + 'px'
