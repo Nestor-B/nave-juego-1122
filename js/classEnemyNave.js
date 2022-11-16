@@ -8,6 +8,7 @@ class EnemyNave extends classAbstract {
         this.h = opts.h
         this.posX = null
         this.posY = null
+        this.etapa = 0
 
         this.moverBala()
         this.colisionBala()
@@ -53,11 +54,13 @@ class EnemyNave extends classAbstract {
             e.style.top = (++y+h) + 'px'
         })
         if( d.querySelectorAll('.enemy').length == 1){
-            this.enemy1(5, 7)       
+            console.log( this.etapa )
+            this.enemy1(3, 4)       
         }
         setTimeout(() => { this.moverBala() }, 100)
     }
     enemy1(min, max){
+        this.etapa += 1
         let cantidad = this.random(min, max)
         for( let i=0;i<cantidad;i++ ){
             this.nave = d.createElement('div')
@@ -66,6 +69,16 @@ class EnemyNave extends classAbstract {
             this.nave.style.left = this.XAuto() + 'px' 
             this.nave.style.width = this.w + 'px' 
             this.nave.style.height = this.h + 'px'
+            
+            if( this.etapa >=0 && this.etapa <= 3 ){
+                this.nave.classList.add('enemy1')
+                this.nave.setAttribute('escudo', parseInt(this.random(3, 6)))
+            }
+            if( this.etapa >=4 && this.etapa <= 8 ){
+                this.nave.classList.add('enemy2')
+                this.nave.setAttribute('escudo', parseInt(this.random(6, 9)))
+            }
+
             // this.nave.classList.add('_typenave_'+ parseInt(this.random(1, 2)) ) 
             this.nave.classList.add('enemy')
             this.nave.classList.add('v-enemy')

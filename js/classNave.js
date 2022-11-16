@@ -11,6 +11,7 @@ class Nave extends classAbstract {
         this.posX = null
         this.posY = null
         app.appendChild(this.nave)
+        this.nave.setAttribute('escudo', 0)
         this.nave.classList.add('nave')
         this.nave.classList.add('solid')
         this.nave.style.width = opts.w + 'px' 
@@ -46,70 +47,72 @@ class Nave extends classAbstract {
         setTimeout(() => { this.moveFire() }, 100)
     }
     firing(t){
-        if( t === 'd' ){
-            if( active === false ){
-                active = true
-                
-                let s = new Audio('./sound/disparo1.mp3')
-                s.volume = 0.6
-                s.play()
-
-                for (let i = 0; i < 3; i++) {
+        if( d.querySelectorAll('.nave')[0] ){
+            if( t === 'd' ){
+                if( active === false ){
+                    active = true
+                    
+                    let s = new Audio('./sound/disparo1.mp3')
+                    s.volume = 0.6
+                    s.play()
+    
+                    for (let i = 0; i < 3; i++) {
+                        let fire = d.createElement('div')
+                        fire.classList.add('_fire_' + i)
+                        fire.classList.add('_fire_')
+                        fire.style.top = this.nave.offsetTop + 'px'
+                        fire.style.left = this.nave.offsetLeft + 15 + 'px'
+                        app.appendChild(fire)
+                    }
+                    setTimeout(() => { active = false }, 1100)
+                }
+            }
+            if( t === 'f' ){
+                if( active === false ){
+                    active = true
+                    
+                    let s = new Audio('./sound/disparo2.mp3')
+                    s.volume = 0.6
+                    s.play()
+    
                     let fire = d.createElement('div')
-                    fire.classList.add('_fire_' + i)
+                    fire.classList.add('_fire_1')
                     fire.classList.add('_fire_')
                     fire.style.top = this.nave.offsetTop + 'px'
                     fire.style.left = this.nave.offsetLeft + 15 + 'px'
                     app.appendChild(fire)
+                    setTimeout(() => { active = false }, 500)
                 }
-                setTimeout(() => { active = false }, 1100)
             }
-        }
-        if( t === 'f' ){
-            if( active === false ){
-                active = true
-                
-                let s = new Audio('./sound/disparo2.mp3')
-                s.volume = 0.6
-                s.play()
-
-                let fire = d.createElement('div')
-                fire.classList.add('_fire_1')
-                fire.classList.add('_fire_')
-                fire.style.top = this.nave.offsetTop + 'px'
-                fire.style.left = this.nave.offsetLeft + 15 + 'px'
-                app.appendChild(fire)
-                setTimeout(() => { active = false }, 500)
-            }
-        }
-        if( t === 'e' ){
-            if( active === false ){
-                active = true
-
-                let s = new Audio('./sound/cargalaser.mp3')
-                s.volume = 0.6
-                s.play()
-
-                let fire = d.createElement('div')
-                fire.classList.add('_fire_1')
-                fire.classList.add('circle-fire')
-                fire.style.height = '100px'
-                fire.style.width = '100px'
-                // fire.style.border = '1px solid gold'
-                fire.style.backgroundColor = 'transparent'
-                fire.style.boxShadow = '0 0 30px 10px transparent'
-                fire.style.top = ( this.nave.offsetTop - 25 ) + 'px'
-                fire.style.left = ( this.nave.offsetLeft - 30 ) + 'px'
-                app.appendChild(fire)
-                setTimeout(() => {  
-                    fire.style.backgroundColor = 'gold'
-                    fire.style.boxShadow = '0 0 30px 10px gold'
-                    fire.classList.add('_fire_')
-                    let s = new Audio('./sound/laser.mp3')
-                    s.volume = 0.8
+            if( t === 'e' ){
+                if( active === false ){
+                    active = true
+    
+                    let s = new Audio('./sound/cargalaser.mp3')
+                    s.volume = 0.6
                     s.play()
-                }, 2000)
-                setTimeout(() => { active = false }, 2000)
+    
+                    let fire = d.createElement('div')
+                    fire.classList.add('_fire_1')
+                    fire.classList.add('circle-fire')
+                    fire.style.height = '100px'
+                    fire.style.width = '100px'
+                    // fire.style.border = '1px solid gold'
+                    fire.style.backgroundColor = 'transparent'
+                    fire.style.boxShadow = '0 0 30px 10px transparent'
+                    fire.style.top = ( this.nave.offsetTop - 25 ) + 'px'
+                    fire.style.left = ( this.nave.offsetLeft - 30 ) + 'px'
+                    app.appendChild(fire)
+                    setTimeout(() => {  
+                        fire.style.backgroundColor = 'gold'
+                        fire.style.boxShadow = '0 0 30px 10px gold'
+                        fire.classList.add('_fire_')
+                        let s = new Audio('./sound/laser.mp3')
+                        s.volume = 0.8
+                        s.play()
+                    }, 2000)
+                    setTimeout(() => { active = false }, 2000)
+                }
             }
         }
     }

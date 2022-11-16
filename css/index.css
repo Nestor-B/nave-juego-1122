@@ -33,10 +33,55 @@ body {
     position: absolute !important;
     top: 5%;
     left: calc(50% - 25px);
-    background: url(../img/enemy1.png);
-    background-size: cover;
-    background-position: center center;
+    background-size: cover !important;
+    background-position: center center !important;
     animation: moveEnemy 1s linear;
+}
+
+.enemy1 {
+    background: url(../img/enemy1.png);
+}
+.enemy2 {
+    background: url(../img/enemy2.png);
+}
+
+.protection {
+    animation: prot 555ms infinite linear;
+}
+@keyframes prot {
+    50% {
+        filter: drop-shadow(5px 5px 20px red);
+    }
+}
+
+.bi {color: white;font-size: 2em;}
+.p-ab {display: flex;justify-content: space-around;width: 100%;padding: 1em;}
+
+.v-enemy {
+    /* animation: mX 10s 1s infinite steps(20) alternate; */
+}
+
+@keyframes mX {
+    /* 0% {
+        transform: translateX(-50px);
+    }
+    16% {
+        transform: translateX(-25px);
+    }
+    32% {
+        transform: translateX(-0px);
+    }
+    48% {
+        transform: translateX(0px);
+    }
+    64% {
+        transform: translateX(25px);
+    } */
+    
+    from {
+        position: absolute;
+        left: 30%;
+    }
 }
 /* ._typenave_0 {background: url(../img/enemy1.png);} */
 /* ._typenave_1 {background: url(../img/enemy4.png);} */

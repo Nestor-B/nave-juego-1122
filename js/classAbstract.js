@@ -1,8 +1,8 @@
-import { d, app } from './global.js'
+import { d, app, puntos } from './global.js'
 
 class classAbstract {
     constructor(){
-        
+        this.puntos = 0
     }
     colisionBala(e){
         let fire1 = d.querySelectorAll('._fire_')
@@ -12,10 +12,12 @@ class classAbstract {
             enemy1.forEach((ene) => {
                 if(e && ene && e.offsetLeft>=ene.offsetLeft - e.offsetWidth&&e.offsetLeft<=ene.offsetLeft+ene.offsetHeight 
                     && e.offsetTop>=ene.offsetTop-6&&e.offsetTop<=ene.offsetTop+ene.offsetHeight){
-
+                        let nivelEscudo = parseInt(ene.getAttribute('escudo'))
                         let s = new Audio('./sound/explosion.mp3')
                         s.volume = 0.6
                         s.play()
+
+                        document.querySelector('#puntos').innerText = ++this.puntos
                             
                         let x = d.createElement('div')
                         x.classList.add('explosion')
@@ -23,9 +25,20 @@ class classAbstract {
                         x.style.left = ( ene.offsetLeft - 4) + 'px'
                         app.appendChild(x)
 
-                        app.removeChild(ene)
-                        if( !e.classList.contains('circle-fire') ){
-                            app.removeChild(e)
+                        if( nivelEscudo > 0 ){
+                            let n = nivelEscudo -= 1
+                            ene.setAttribute('escudo', n)
+                            ene.classList.add('protection')
+                        }else{
+                            if(nivelEscudo == 0){
+                                ene?app.removeChild(ene):null
+                                if( !e.classList.contains('circle-fire') ){
+                                    app.removeChild(e)
+                                }
+                                if(x.offsetTop == 0){
+                                    app.removeChild(x)
+                                }
+                            }
                         }
 
                     setTimeout(() => app.removeChild(x), 700)
