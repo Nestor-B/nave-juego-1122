@@ -44,7 +44,7 @@ class Nave extends classAbstract {
                 e.style.top = (--y-h) + 'px'
             }
         })
-        setTimeout(() => { this.moveFire() }, 100)
+        setTimeout(() => { this.moveFire() }, 80)
     }
     firing(t){
         if( d.querySelectorAll('.nave')[0] ){

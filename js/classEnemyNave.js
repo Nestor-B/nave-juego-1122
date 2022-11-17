@@ -31,7 +31,7 @@ class EnemyNave extends classAbstract {
                     x.style.left = ( ene.offsetLeft - 4) + 'px'
                     app.appendChild(x)
 
-                    app.removeChild(ene)
+                    e&&ene?app.removeChild(ene):null
                     if( !e.classList.contains('circle-fire') ){
                         app.removeChild(e)
                     }
@@ -55,7 +55,11 @@ class EnemyNave extends classAbstract {
         })
         if( d.querySelectorAll('.enemy').length == 1){
             console.log( this.etapa )
-            this.enemy1(3, 4)       
+            if ( this.etapa > 15 ) {
+                this.enemy1(1, 2) 
+            }else{
+                this.enemy1(3, 4)
+            }       
         }
         setTimeout(() => { this.moverBala() }, 100)
     }
@@ -74,16 +78,34 @@ class EnemyNave extends classAbstract {
                 this.nave.classList.add('enemy1')
                 this.nave.setAttribute('escudo', parseInt(this.random(3, 6)))
             }
-            if( this.etapa >=4 && this.etapa <= 8 ){
+            else if( this.etapa >=4 && this.etapa <= 8 ){
                 this.nave.classList.add('enemy2')
                 this.nave.setAttribute('escudo', parseInt(this.random(6, 9)))
+            }
+            else if( this.etapa > 8 && this.etapa <= 15 ){
+                if(cantidad % 2 == 0){
+                    this.nave.classList.add('enemy2')
+                }else{
+                    this.nave.classList.add('enemy1')
+                }
+                this.nave.setAttribute('escudo', parseInt(this.random(10, 15)))
+            }
+            else if( this.etapa > 15 && this.etapa <= 25 ){
+                this.nave.classList.add('enemy2')
+                this.nave.setAttribute('escudo', parseInt(this.random(6, 9)))
+            }
+            else if( this.etapa > 26 && this.etapa <= 35 ){
+                this.nave.classList.add('enemy1')
+            }
+            else if( this.etapa > 35 && this.etapa <= 45 ){
+                this.nave.classList.add('enemy2')
             }
 
             // this.nave.classList.add('_typenave_'+ parseInt(this.random(1, 2)) ) 
             this.nave.classList.add('enemy')
             this.nave.classList.add('v-enemy')
             this.nave.classList.add('solid')
-            this.nave.setAttribute('d', this.random(700, 10000))
+            this.nave.setAttribute('d', this.random(1000, 10000))
             this.nave.setAttribute('m', [ this.nave.offsetLeft - 100, this.nave.offsetLeft - 50, this.nave.offsetLeft,  this.nave.offsetLeft + 50, this.nave.offsetLeft + 100 ] )
 
             const myevento = new Event('disparo')

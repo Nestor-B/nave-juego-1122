@@ -31,7 +31,7 @@ class classAbstract {
                             ene.classList.add('protection')
                         }else{
                             if(nivelEscudo == 0){
-                                ene?app.removeChild(ene):null
+                                e&&ene?app.removeChild(ene):null
                                 if( !e.classList.contains('circle-fire') ){
                                     app.removeChild(e)
                                 }

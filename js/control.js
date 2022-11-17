@@ -45,6 +45,26 @@ let initControl = () => {
     d.addEventListener('touchstart', (event) => {
         console.log(event)
     })
+
+    d.querySelector('#d3').addEventListener('click', () => {
+        nave.firing('d')
+    })
+    d.querySelector('#mleft').addEventListener('click', ()=> {
+        nave.moveX('left')
+    })
+    d.querySelector('#blazer').addEventListener('click', ()=>{
+        
+        nave.firing('e')
+    })
+    d.querySelector('#disparar').addEventListener('click', ()=>{
+        
+        nave.firing('f')
+    })
+    d.querySelector('#mright').addEventListener('click', ()=>{
+        
+        nave.moveX('right')
+    })
+    // d3 mleft blazer disparar mright
 }
 
 export default initControl
